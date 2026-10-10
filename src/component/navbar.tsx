@@ -1,15 +1,13 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import navlogo from "@/assets/logo.png";
+import { ExcerciseContext } from "@/context/excercise";
+import { Idata } from "@/type/dataType";
 
-type NavbarProps = {
-  planCount?: number;
-  savedCount?: number;
-};
 
 type NavItem = {
   name: string;
@@ -21,7 +19,7 @@ const navItems: NavItem[] = [
   { name: "My Plan", href: "/myplan" },
 ];
 
-// Menu Icon
+
 const MenuIcon = ({ size = 24 }: { size?: number }) => (
   <svg
     aria-hidden="true"
@@ -37,7 +35,6 @@ const MenuIcon = ({ size = 24 }: { size?: number }) => (
   </svg>
 );
 
-// Close Icon
 const CloseIcon = ({ size = 24 }: { size?: number }) => (
   <svg
     aria-hidden="true"
@@ -53,14 +50,13 @@ const CloseIcon = ({ size = 24 }: { size?: number }) => (
   </svg>
 );
 
-// Active Navigation Links
-function NavigationLinks({
+const NavigationLinks=({
   menuOpen,
   onNavigate,
 }: {
   menuOpen: boolean;
   onNavigate: () => void;
-}) {
+})=> {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
@@ -76,7 +72,6 @@ function NavigationLinks({
 
   return (
     <>
-      {/* Desktop Navigation */}
       <nav
         aria-label="Main navigation"
         className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 sm:flex"
@@ -101,7 +96,6 @@ function NavigationLinks({
         })}
       </nav>
 
-      {/* Mobile Navigation */}
       {menuOpen && (
         <nav
           aria-label="Mobile navigation"
@@ -134,17 +128,23 @@ function NavigationLinks({
   );
 }
 
-// Navbar Component
-export default function Navbar({
-  planCount = 0,
-  savedCount = 0,
-}: NavbarProps) {
+
+export default function Navbar(){
+
+const ExcerciseProvider = useContext(ExcerciseContext) as {
+    todaysPlan: Idata[];
+    save: Idata[];
+  };
+  const { todaysPlan, save} = ExcerciseProvider;
+
+
+
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#202126] bg-[#0c0d0f] text-white">
       <div className="relative mx-auto flex h-17.5 max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
         <Link
           href="/"
           aria-label="Fitlog home"
@@ -164,7 +164,6 @@ export default function Navbar({
           </span>
         </Link>
 
-        {/* Navigation: Suspense fixes usePathname prerendering */}
         <Suspense
           fallback={
             <div className="absolute left-1/2 hidden h-8 w-32 -translate-x-1/2 sm:block" />
@@ -176,7 +175,6 @@ export default function Navbar({
           />
         </Suspense>
 
-        {/* Right Side Counters */}
         <div className="ml-auto flex shrink-0 items-center gap-3 sm:gap-5">
           <Link
             href="/myplan"
@@ -187,7 +185,7 @@ export default function Navbar({
             </span>
 
             <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-[#ccff00] px-1 text-[9px] font-bold text-black">
-              {planCount}
+              {todaysPlan.length}
             </span>
           </Link>
 
@@ -200,11 +198,10 @@ export default function Navbar({
             </span>
 
             <span className="flex h-4 min-w-4 items-center justify-center rounded-full border border-[#34363d] px-1 text-[9px] text-[#b5b6bd]">
-              {savedCount}
+              {save.length}
             </span>
           </Link>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
             onClick={() => setMenuOpen((prev) => !prev)}

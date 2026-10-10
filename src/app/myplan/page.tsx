@@ -2,30 +2,37 @@
 
 import Emtycard from "@/component/myplan/emtycard";
 import Myplandtails from "@/component/myplan/myplandtails";
+import SaveCard from "@/component/myplan/saveCard";
 import WorkoutCard from "@/component/myplan/workoutCard";
-import { useState } from "react";
+import { ExcerciseContext } from "@/context/excercise";
+import { Idata } from "@/type/dataType";
+import { useContext, useState } from "react";
 
 export default function Tabs() {
   const [activeTab, setActiveTab] = useState("today");
+
+  const ExcerciseProvider = useContext(ExcerciseContext) as {
+    todaysPlan: Idata[];
+    save: Idata[];
+  };
+  const { todaysPlan,  save } = ExcerciseProvider;
 
   return (
     <div className="container mx-auto mt-10">
       <h1 className="text-3xl font-extrabold">MY PLAN</h1>
 
-            <p className="mt-2 text-sm text-gray-400">
-              Cap of five lifts for today. Finish them, then load more.
-            </p>
+      <p className="mt-2 text-sm text-gray-400">
+        Cap of five lifts for today. Finish them, then load more.
+      </p>
       <div className="mt-6">
         {activeTab === "today" ? (
           <div>
-            
-
             {/* FIRST RED AREA: Stats change with the tab */}
-            <Myplandtails/>
+            <Myplandtails />
           </div>
         ) : (
           <div>
-            <Myplandtails/>
+            <Myplandtails />
           </div>
         )}
       </div>
@@ -61,12 +68,30 @@ export default function Tabs() {
           <div>
             {/* Today's Plan top content */}
             {/* <Emtycard/> */}
-            <WorkoutCard/>
+            {todaysPlan.length > 0 ? (
+              <div>
+                {" "}
+                {todaysPlan.map((data: Idata) => (
+                  <WorkoutCard key={data.id} data={data} />
+                ))}
+              </div>
+            ) : (
+              <Emtycard />
+            )}
           </div>
         ) : (
           <div>
             {/* Saved top content */}
-            <Emtycard/>
+            {save.length > 0 ? (
+              <div>
+                {" "}
+                {save.map((data: Idata) => (
+                  <SaveCard key={data.id} data={data} />
+                ))}
+              </div>
+            ) : (
+              <Emtycard />
+            )}
           </div>
         )}
       </div>

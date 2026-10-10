@@ -8,7 +8,7 @@ import React from "react";
 
 const getDatas = async () => {
   try {
-    const res = await fetch("https://api.api-store.workers.dev/api/fitlog");
+    const res = await fetch("https://openapi.programming-hero.com/api/fitlog");
     const data = await res.json();
     return data;
   } catch {
