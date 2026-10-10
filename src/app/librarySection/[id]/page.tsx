@@ -1,5 +1,6 @@
 import { Idata } from "@/type/dataType";
 import { Bookmark, CalendarPlus } from "lucide-react";
+
 import Image from "next/image";
 
 const getDatas = async () => {
@@ -11,6 +12,8 @@ const getDatas = async () => {
     return [];
   }
 };
+
+
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -34,6 +37,8 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     description,
     instructions,
   } = data;
+
+
 
   const specs = [
     { label: "Equipment", value: equipment },

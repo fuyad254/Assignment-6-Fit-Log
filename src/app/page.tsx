@@ -6,6 +6,7 @@ export default function Home() {
     <>
     <HeroSection/>
     <LibrarySection/>
+    <div className="w-3.5 h-500 bg-amber-200"></div>
     <h1>hello</h1>
     </>
   );

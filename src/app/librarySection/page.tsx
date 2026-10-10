@@ -1,7 +1,10 @@
 import ExcerciseDtailsCard from "@/component/excerciseDtailsCard";
 import { Idata } from "@/type/dataType";
 
+
 import React from "react";
+
+
 
 const getDatas = async () => {
   try {

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Suspense, useState } from "react";
@@ -19,7 +18,7 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { name: "Workouts", href: "/" },
-  { name: "My Plan", href: "/my-plan" },
+  { name: "My Plan", href: "/myplan" },
 ];
 
 // Menu Icon
@@ -180,7 +179,7 @@ export default function Navbar({
         {/* Right Side Counters */}
         <div className="ml-auto flex shrink-0 items-center gap-3 sm:gap-5">
           <Link
-            href="/my-plan"
+            href="/myplan"
             className="flex items-center gap-1.5"
           >
             <span className="text-[10px] text-[#d0d1d5] sm:text-[11px]">
@@ -193,7 +192,7 @@ export default function Navbar({
           </Link>
 
           <Link
-            href="/my-plan"
+            href="/myplan"
             className="flex items-center gap-1.5"
           >
             <span className="text-[10px] text-[#a3a5ad] sm:text-[11px]">
