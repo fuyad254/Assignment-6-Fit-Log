@@ -1,6 +1,7 @@
 import { ExcerciseContext } from '@/context/excercise';
 import { Idata } from '@/type/dataType';
 import React, { useContext } from 'react';
+import { Flip, toast } from 'react-toastify';
 
 const RemoveButtonSave = ({data}:{data:Idata}) => {
  const ExcerciseProvider = useContext(ExcerciseContext) as {
@@ -12,7 +13,17 @@ const RemoveButtonSave = ({data}:{data:Idata}) => {
       const handleRemoveSaveButton = () => {
         
             setSave(save.filter((plan)=>(plan.id!==data.id)));
-            alert("removed")
+            toast.success("Removed from Save for later", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+      });
         
       }
 

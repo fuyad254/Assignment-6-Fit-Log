@@ -1,6 +1,7 @@
 import { ExcerciseContext } from "@/context/excercise";
 import { Idata } from "@/type/dataType";
 import React, { useContext } from "react";
+import { Flip, toast } from "react-toastify";
 
 const MakeAsDoneButton = ({data}:{data:Idata}) => {
   const ExcerciseProvider = useContext(ExcerciseContext) as {
@@ -11,7 +12,18 @@ const MakeAsDoneButton = ({data}:{data:Idata}) => {
 
   const handleMakeAsDoneButton = () => {
     setTodaysPlan(todaysPlan.filter((plan) => plan.id !== data.id));
-    alert("removed");
+    // alert("removed");
+    toast.info(`confused`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+      });
   };
   return (
     <button

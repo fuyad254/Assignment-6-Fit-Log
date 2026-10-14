@@ -19,7 +19,9 @@ export default function Tabs() {
   const { todaysPlan,  save } = ExcerciseProvider;
 
   return (
-    <div className="container mx-auto mt-10">
+    <div className="container mx-auto mt-10 mb-10 min-h-[60vh] px-4 sm:px-6 lg:px-8 ">
+      
+
       <h1 className="text-3xl font-extrabold">MY PLAN</h1>
 
       <p className="mt-2 text-sm text-gray-400">
@@ -28,25 +30,25 @@ export default function Tabs() {
       <div className="mt-6">
         {activeTab === "today" ? (
           <div>
-            {/* FIRST RED AREA: Stats change with the tab */}
+            
             <MyplanTodaytails todaysPlan={todaysPlan}/>
           </div>
         ) : (
           <div>
-            {/* <Myplandtails save={save}/> */}
+            
             <MyplandSaveDtails save={save}/>
           </div>
         )}
       </div>
 
-      {/* Tab Buttons */}
-      <div className="tabs tabs-box mt-7 w-fit rounded-xl border border-[#252832] bg-[#15171e] p-1">
+      
+      <div className="tabs tabs-box mt-7 w-full max-w-full overflow-x-auto rounded-xl border border-[#252832] bg-[#15171e] p-1 sm:w-fit">
         <button
           onClick={() => setActiveTab("today")}
           className={`tab rounded-lg px-5 ${
             activeTab === "today"
-              ? "bg-[#242731] font-semibold text-white"
-              : "text-gray-400"
+            ? "bg-[#242731] font-semibold text-white"
+            : "text-gray-400"
           }`}
         >
           Today&apos;s Plan
@@ -56,20 +58,19 @@ export default function Tabs() {
           onClick={() => setActiveTab("saved")}
           className={`tab rounded-lg px-5 ${
             activeTab === "saved"
-              ? "bg-[#242731] font-semibold text-white"
-              : "text-gray-400"
+            ? "bg-[#242731] font-semibold text-white"
+            : "text-gray-400"
           }`}
-        >
+          >
           Saved
         </button>
       </div>
 
-      {/* First Content - Top Red Area */}
+      
       <div className="mt-6">
         {activeTab === "today" ? (
           <div>
-            {/* Today's Plan top content */}
-            {/* <Emtycard/> */}
+            
             {todaysPlan.length > 0 ? (
               <div>
                 {" "}
@@ -83,7 +84,7 @@ export default function Tabs() {
           </div>
         ) : (
           <div>
-            {/* Saved top content */}
+            
             {save.length > 0 ? (
               <div>
                 {" "}
@@ -97,6 +98,7 @@ export default function Tabs() {
           </div>
         )}
       </div>
+                
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import { ExcerciseContext } from '@/context/excercise';
 import { Idata } from '@/type/dataType';
 import React, { useContext } from 'react';
+import { Flip, toast } from 'react-toastify';
 
 const RemoveButtonToday = ({data}:{data:Idata}) => {
 
@@ -14,7 +15,17 @@ const RemoveButtonToday = ({data}:{data:Idata}) => {
       const handleRemoveButton = () => {
         
             setTodaysPlan(todaysPlan.filter((plan)=>(plan.id!==data.id)));
-            alert("removed")
+            toast.success("Removed from today's plan", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+      });
         
       }
       

@@ -3,6 +3,7 @@ import { ExcerciseContext } from "@/context/excercise";
 import { Idata } from "@/type/dataType";
 import { Bookmark } from "lucide-react";
 import React, { useContext } from "react";
+import { Flip, toast } from "react-toastify";
 
 const SaveButton = ({ data }: { data: Idata }) => {
   const ExcerciseProvider = useContext(ExcerciseContext) as {
@@ -12,15 +13,34 @@ const SaveButton = ({ data }: { data: Idata }) => {
   const { save, setSave } = ExcerciseProvider;
 
   const handleSaveButton = () => {
-    const checkSave= save.find((saveData=>saveData.id==data.id))
+    const checkSave = save.find((saveData) => saveData.id == data.id);
     // console.log(hi);
-    if(checkSave){
-        alert("alrady added")
+    if (checkSave) {
+      toast.info("alrady added", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+      });
+    } else {
+      setSave([...save, data]);
+      toast.success("Save for later", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+      });
     }
-    else{
-        setSave([...save, data]);
-    }
-
   };
   return (
     <div>

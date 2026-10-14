@@ -3,6 +3,7 @@ import { ExcerciseContext } from "@/context/excercise";
 import { Idata } from "@/type/dataType";
 import { CalendarPlus } from "lucide-react";
 import React, { useContext } from "react";
+import { Flip, toast } from "react-toastify";
 
 const TodaysPlanButton = ({ data }: { data: Idata }) => {
   const ExcerciseProvider = useContext(ExcerciseContext) as {
@@ -12,15 +13,36 @@ const TodaysPlanButton = ({ data }: { data: Idata }) => {
   const { todaysPlan, setTodaysPlan } = ExcerciseProvider;
 
   const handleTodayButton = () => {
-    const checkSave= todaysPlan.find((todaysPlanData=>todaysPlanData.id==data.id))
-    if(checkSave){
-        alert("alrady added")
-    }
-    else{
-        setTodaysPlan([...todaysPlan, data]);
+    const checkSave = todaysPlan.find(
+      (todaysPlanData) => todaysPlanData.id == data.id,
+    );
+    if (checkSave) {
+      toast.info("alrady added", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+      });
+    } else {
+      setTodaysPlan([...todaysPlan, data]);
+      toast.success("Added to today's plan", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+      });
     }
   };
-
 
   return (
     <div>
