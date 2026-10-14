@@ -5,8 +5,14 @@ import { FaFire } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { Idata } from "@/type/dataType";
 import Link from "next/link";
+import RemoveButtonToday from "../libraryButton/removeButtonToday";
+import MakeAsDoneButton from "../libraryButton/makeAsDoneButton";
 
 const WorkoutCard = ({data}:{data:Idata}) => {
+
+
+
+
   return (
     <div className="flex w-full flex-col gap-4 rounded-xl border border-[#252630] bg-[#15161c] p-5 sm:flex-row sm:items-center sm:gap-3">
       {/* Thumbnail */}
@@ -56,35 +62,17 @@ const WorkoutCard = ({data}:{data:Idata}) => {
         <Link href={`/librarySection/${data.id}`}>
         <button
           //   onClick={onViewDetails}
-          className="whitespace-nowrap rounded-full border border-[#343640] px-3 py-2 text-[10px] text-white transition hover:border-[#c6ff00]"
+          className="whitespace-nowrap rounded-full border border-[#343640] px-3 py-2 text-[10px] cursor-pointer text-white transition hover:border-[#c6ff00]"
         >
           View Details
         </button>
         </Link>
 
-        <button
-          //   onClick={onMarkDone}
-          className="flex items-center gap-1.5 whitespace-nowrap rounded-full bg-[#c6ff00] px-3 py-2 text-[10px] font-semibold text-black transition hover:bg-[#d7ff47]"
-        >
-          <span>✓</span>
-          Mark as Done
-        </button>
+        <MakeAsDoneButton data={data}/>
 
-        <button
-          //   onClick={onRemove}
-          aria-label="Remove workout"
-          className="flex h-8 w-6 shrink-0 items-center justify-center text-[#777985] transition hover:text-white"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            className="h-4 w-4"
-          >
-            <path d="M6 6l12 12M18 6L6 18" />
-          </svg>
-        </button>
+        
+        <RemoveButtonToday data={data}/>
+
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { FaFire } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { Idata } from "@/type/dataType";
 import Link from "next/link";
+import RemoveButtonSave from "../libraryButton/removeButtonSave";
 
 const SaveCard = ({data}:{data:Idata}) => {
   return (
@@ -62,21 +63,9 @@ const SaveCard = ({data}:{data:Idata}) => {
         </button>
         </Link>
 
-        <button
-          //   onClick={onRemove}
-          aria-label="Remove workout"
-          className="flex h-8 w-6 shrink-0 items-center justify-center text-[#777985] transition hover:text-white"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            className="h-4 w-4"
-          >
-            <path d="M6 6l12 12M18 6L6 18" />
-          </svg>
-        </button>
+        
+
+        <RemoveButtonSave data={data}/>
       </div>
     </div>
   );

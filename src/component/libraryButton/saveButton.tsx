@@ -22,7 +22,6 @@ const SaveButton = ({ data }: { data: Idata }) => {
     }
 
   };
-console.log(save);
   return (
     <div>
       <button

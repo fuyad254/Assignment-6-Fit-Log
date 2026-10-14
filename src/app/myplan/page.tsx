@@ -1,7 +1,8 @@
 "use client";
 
 import Emtycard from "@/component/myplan/emtycard";
-import Myplandtails from "@/component/myplan/myplandtails";
+import MyplandSaveDtails from "@/component/myplan/myplanSaveDtails";
+import MyplanTodaytails from "@/component/myplan/myplanTodaydtails";
 import SaveCard from "@/component/myplan/saveCard";
 import WorkoutCard from "@/component/myplan/workoutCard";
 import { ExcerciseContext } from "@/context/excercise";
@@ -28,11 +29,12 @@ export default function Tabs() {
         {activeTab === "today" ? (
           <div>
             {/* FIRST RED AREA: Stats change with the tab */}
-            <Myplandtails />
+            <MyplanTodaytails todaysPlan={todaysPlan}/>
           </div>
         ) : (
           <div>
-            <Myplandtails />
+            {/* <Myplandtails save={save}/> */}
+            <MyplandSaveDtails save={save}/>
           </div>
         )}
       </div>
@@ -47,7 +49,7 @@ export default function Tabs() {
               : "text-gray-400"
           }`}
         >
-          Todays Plan
+          Today&apos;s Plan
         </button>
 
         <button

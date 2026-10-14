@@ -22,7 +22,6 @@ const TodaysPlanButton = ({ data }: { data: Idata }) => {
   };
 
 
-  console.log(todaysPlan.length);
   return (
     <div>
       <button
