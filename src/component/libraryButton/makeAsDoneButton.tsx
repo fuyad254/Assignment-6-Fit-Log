@@ -13,7 +13,7 @@ const MakeAsDoneButton = ({data}:{data:Idata}) => {
   const handleMakeAsDoneButton = () => {
     setTodaysPlan(todaysPlan.filter((plan) => plan.id !== data.id));
     // alert("removed");
-    toast.info(`confused`, {
+    toast.success(` The workout done`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: true,
